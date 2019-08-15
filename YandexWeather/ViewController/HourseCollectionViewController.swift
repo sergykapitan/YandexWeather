@@ -19,16 +19,23 @@ class HourseCollectionViewController: UICollectionViewController,UICollectionVie
     let realm = try! Realm()
     var index = 0
     
-    var images = [UIImage?] ()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Прогноз по Часам"
         self.items = self.realm.objects(WeatherDataRealm.self)
-       
-        
-        for _ in 0...24 {
-            images.append(UIImage(named: "clear"))
+ 
+    }
+    func formatHors(hour: String) -> String {
+        switch (hour) {
+        case "1","21" :
+            return hour + " час"
+        case "0","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"  :
+            return hour + " часов"
+        case "2","3","4","22","23"  :
+            return hour + " часа"
+        default:
+            return hour
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -45,7 +52,8 @@ class HourseCollectionViewController: UICollectionViewController,UICollectionVie
         as! ImageCell
         guard let hour = items.last else {return cell}
         let tem = hour.hoursForDays[index]
-        cell.temperatureForHoursLabel.text = "\(tem.temp[indexPath.row])° C"
+        cell.timeLabel.text = formatHors(hour: "\(tem.hour[indexPath.row])") 
+        cell.temperatureForHoursLabel.text = "Темп:\(tem.temp[indexPath.row])° C"
         let imageName = tem.icon[indexPath.row]  
         guard let url = URL(string: baseURLImage + imageName + ".svg") else {return cell}
         let namSvgImgVar: SVGKImage = SVGKImage(contentsOf: url)

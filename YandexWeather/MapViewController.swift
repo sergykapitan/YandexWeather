@@ -119,11 +119,9 @@ extension MapViewController {
     
     private func updateWeatherData(json: JSON) {
         let list = json
-   
         guard list.count > 0 else {
             showError(msg: "Weather Unavailable")
             return }
-        print(list["forecasts"][0]["hours"].arrayValue.map({$0["icon"].stringValue}))
        let weatherDataRealm = WeatherDataRealm(value: [
                             "My-Primary-Key",
                             list["fact"]["temp"].int!,
@@ -139,6 +137,9 @@ extension MapViewController {
                                                                                                         ])
         for i in 0..<7 {
             let hours = Hours()
+            for n in list["forecasts"][0]["hours"].arrayValue.map({$0["hour"].stringValue}) {
+                hours.hour.append(n)
+            }
             for j in list["forecasts"][i]["hours"].arrayValue.map({$0["icon"].stringValue}) {
                 hours.icon.append(j)
             }

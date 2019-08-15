@@ -57,7 +57,17 @@ class ForecastViewController: UIViewController {
         if let viewController = segue.destination as? HourseCollectionViewController {
             viewController.index = sender as? Int ?? 0
         }
-    }    
+    }
+    func formatDate(dateStr: String) -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "dd MMMM"
+        dateFormatterPrint.locale = Locale(identifier: "ru_RU")
+        
+        let date: NSDate? = dateFormatterGet.date(from: dateStr) as NSDate?
+        return dateFormatterPrint.string(from: date! as Date)
+    }
     
 }
 
@@ -72,8 +82,8 @@ extension ForecastViewController: UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseID, for: indexPath)
         as! TableViewCell
         guard let item = items.last else {return cell}
-        let date = item.forecast[indexPath.row]
-        cell.dateLabel.text? = "Прогноз на:" + "\(date)"
+        let date = formatDate(dateStr: item.forecast[indexPath.row])
+        cell.dateLabel.text? = "Прогноз на: " + "\(date)"
         cell.temperatureLabel.text = "\(item.temperatureForDays[indexPath.row])° C"
         let imageName = item.iconForDays[indexPath.row]
         guard let url = URL(string: baseURLImage + imageName + ".svg") else {return cell}

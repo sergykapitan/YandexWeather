@@ -33,7 +33,6 @@ class WeatherDataRealm: Object {
 class Hours: Object{
       var temp = List<Int>()
       var icon = List<String>()
-
-    
+      var hour = List<String>()
 }
 
