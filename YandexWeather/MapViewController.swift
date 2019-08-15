@@ -44,6 +44,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          title = "Карта"
+      
          setupLocationManager()
        //  print(Realm.Configuration.defaultConfiguration.fileURL!)// путь к базе данных
     }
@@ -58,6 +59,7 @@ extension MapViewController {
         manager.session.configuration.timeoutIntervalForRequest = 20
         manager.request(url, method: .get, parameters: parameters, headers: head).responseJSON { response in
             if response.result.isSuccess {
+                print("isSucces")
                 let weatherJSON: JSON = JSON(response.result.value!)
                 self.updateWeatherData(json: weatherJSON)
             } else {
@@ -101,6 +103,12 @@ extension MapViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.pausesLocationUpdatesAutomatically = false
+        locationManager.startUpdatingLocation()
+        locationManager.startMonitoringSignificantLocationChanges()
+      
     }
 }
 
@@ -126,7 +134,8 @@ extension MapViewController {
                             list["forecasts"][0]["date"].stringValue,
                             list["forecasts"].arrayValue.map{$0["date"].stringValue},
                             list["forecasts"].arrayValue.map{$0["parts"]["day"]["temp_avg"].intValue},
-                            list["forecasts"].arrayValue.map{$0["parts"]["day"]["condition"].stringValue}
+                            list["forecasts"].arrayValue.map{$0["parts"]["day"]["condition"].stringValue},
+                            list["forecasts"].arrayValue.map{$0["parts"]["day"]["icon"].stringValue}
                                                                                                         ])
         for i in 0..<7 {
             let hours = Hours()
@@ -169,8 +178,8 @@ extension MapViewController: CLLocationManagerDelegate {
         mapView.camera = GMSCameraPosition.camera(withLatitude: latitude,
                                                   longitude: longitude,
                                                   zoom: 12.0)
-        
-        locationManager.stopUpdatingLocation()
+       // locationManager.requestAlwaysAuthorization()
+        //locationManager.stopUpdatingLocation()
         
         let params: [String : String] = [
             "lat": String(latitude),
