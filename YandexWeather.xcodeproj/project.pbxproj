@@ -94,14 +94,12 @@
 		883227A822FE0B4900576C5C /* YandexWeather */ = {
 			isa = PBXGroup;
 			children = (
-				88CFDDB122FE22A8006BFD1B /* MarkerView */,
 				883227BF22FE157800576C5C /* App */,
 				883227C322FE15C300576C5C /* Model */,
 				883227C022FE158B00576C5C /* ViewController */,
 				883227BE22FE156100576C5C /* View */,
-				883227B322FE0B4D00576C5C /* Assets.xcassets */,
-				883227AD22FE0B4900576C5C /* Main.storyboard */,
-				883227B522FE0B4D00576C5C /* LaunchScreen.storyboard */,
+				88D06CEC230585A900E36EC1 /* Resource */,
+				88D06CEB2305851C00E36EC1 /* Story Board */,
 			);
 			path = YandexWeather;
 			sourceTree = "<group>";
@@ -109,6 +107,7 @@
 		883227BE22FE156100576C5C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				88CFDDB122FE22A8006BFD1B /* MarkerView */,
 				88CFDDE8230179BC006BFD1B /* Cell */,
 			);
 			path = View;
@@ -148,6 +147,7 @@
 				88CFDDB422FE22FA006BFD1B /* MarkerView.xib */,
 			);
 			name = MarkerView;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		88CFDDE8230179BC006BFD1B /* Cell */ = {
@@ -158,6 +158,23 @@
 				88CFDDEB23021164006BFD1B /* ImageCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		88D06CEB2305851C00E36EC1 /* Story Board */ = {
+			isa = PBXGroup;
+			children = (
+				883227AD22FE0B4900576C5C /* Main.storyboard */,
+				883227B522FE0B4D00576C5C /* LaunchScreen.storyboard */,
+			);
+			path = "Story Board";
+			sourceTree = "<group>";
+		};
+		88D06CEC230585A900E36EC1 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				883227B322FE0B4D00576C5C /* Assets.xcassets */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

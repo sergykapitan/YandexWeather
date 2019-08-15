@@ -18,8 +18,9 @@ class MapViewController: UIViewController {
     let realm = try! Realm() //Доступ к хранилищу
     private let locationManager = CLLocationManager()
     private let WEATHER_URL = "https://api.weather.yandex.ru/v1/forecast"
-  
     private  let head:[String:String] = ["X-Yandex-API-Key": "9a4dd815-d16d-46a5-bc87-0801a556b444"]
+   
+    
     
     //MARK: - Outlets
     @IBOutlet var mapView: GMSMapView!
@@ -44,26 +45,23 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
          title = "Карта"
          setupLocationManager()
-         print(Realm.Configuration.defaultConfiguration.fileURL!)
+       //  print(Realm.Configuration.defaultConfiguration.fileURL!)// путь к базе данных
     }
+    
 
 
 }
     //MARK: - Networking
 extension MapViewController {
     private func getWeatherData(url: String, parameters: [String : String]) {
-      //  let queue = DispatchQueue(label: "com.test.api", qos: .background, attributes: .concurrent)
         let manager = Alamofire.SessionManager.default
         manager.session.configuration.timeoutIntervalForRequest = 20
-        
         manager.request(url, method: .get, parameters: parameters, headers: head).responseJSON { response in
             if response.result.isSuccess {
                 let weatherJSON: JSON = JSON(response.result.value!)
-                
                 self.updateWeatherData(json: weatherJSON)
             } else {
                 print("Error \(String(describing: response.result.error?.localizedDescription))")
-                
                 self.showError(msg: "Connection Issues")
             }
         }
@@ -117,10 +115,7 @@ extension MapViewController {
         guard list.count > 0 else {
             showError(msg: "Weather Unavailable")
             return }
-        
-      //  print( list["forecasts"][0]["hours"].arrayValue.map({$0["hour"]}))
-     
-
+       print(list["forecasts"].arrayValue.map{$0["parts"]["day"]["icon"].stringValue})
        let weatherDataRealm = WeatherDataRealm(value: [
                             "My-Primary-Key",
                             list["fact"]["temp"].int!,
@@ -134,12 +129,10 @@ extension MapViewController {
                             list["forecasts"].arrayValue.map{$0["parts"]["day"]["condition"].stringValue}
                                                                                                         ])
         for i in 0..<7 {
-            let hours = Hours(value: list["forecasts"][i]["hours"].arrayValue.map({$0["temp"].intValue}))
-            var arr = [Int]()
-            for y in list["forecasts"][i]["hours"].arrayValue.map({$0["temp"].intValue}){
-                arr.append(y)
+            let hours = Hours()
+            for y in list["forecasts"][i]["hours"].arrayValue.map({$0["temp"].intValue}) {
+                hours.temp.append(y)
             }
-            print(arr)
             weatherDataRealm.hoursForDays.append(hours)
         }
         
@@ -148,6 +141,7 @@ extension MapViewController {
         try! self.realm.write {
             self.realm.add(weatherDataRealm,update: .modified)
         }
+        
         updateUI(with: weatherDataRealm)
         
     }

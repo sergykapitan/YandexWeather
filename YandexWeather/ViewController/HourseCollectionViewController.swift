@@ -35,24 +35,17 @@ class HourseCollectionViewController: UICollectionViewController,UICollectionVie
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 24
+        let temp = items.last
+        return temp?.hoursForDays[index].temp.count ?? 24
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         as! ImageCell
         guard let hour = items.last else {return cell}
-       // print(items.last)
-      //  let array = Array(hour.hoursForDays)
+        let tem = hour.hoursForDays[index]
+        cell.temperatureForHoursLabel.text = "\(tem.temp[indexPath.row])° C"
         cell.imageIcon.image = images[indexPath.row]
-      //  var tem = hour.hoursForDays[index]
-      //  let a = "hour" + "\([indexPath.row])"
-       //  print(tem)
-      //  let arr = Array(tem)
-      //  print(arr)
-      //  cell.temperatureForHoursLabel.text = tem[indexPath.row]
-      //  print(item.temperatureForHours[indexPath.row])
-      //  cell.temperatureForHoursLabel.text = "\(item.temperatureForHours[indexPath.row])° C"
     
         return cell
     }
