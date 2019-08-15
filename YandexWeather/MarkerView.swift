@@ -10,11 +10,15 @@ import UIKit
 
 class MarkerView: UIView {
 
+  
     @IBOutlet var pictureImageView: UIImageView!
     @IBOutlet var temperatureLabel: UILabel!
     
+    
     private var pictureImageName: String = "dunno"
     private var temperatureValue: String = "-"
+    
+    
     
     convenience init(frame: CGRect, picture: String, temperature: String) {
         self.init(frame: frame)
@@ -27,15 +31,19 @@ class MarkerView: UIView {
     
     private func setupViews() {
         let xibView = loadViewFromXib()
+       
         
         xibView.frame = self.bounds
         xibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
+      
         pictureImageView.image = UIImage(named: pictureImageName)
         temperatureLabel.text = "\(temperatureValue) °C"
         
+        
+        
         layer.borderWidth = 1
         layer.borderColor = UIColor.lightGray.withAlphaComponent(0.6).cgColor
+       
         
         self.addSubview(xibView)
     }
@@ -47,7 +55,6 @@ class MarkerView: UIView {
         return nib.instantiate(withOwner: self, options: nil).first! as! UIView
     }
     
-
 }
 
 //MARK: - Convert to UIImage

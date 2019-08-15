@@ -6,6 +6,7 @@ target 'YandexWeather' do
   pod 'GoogleMaps'
   pod 'SwiftyJSON'
   pod 'Alamofire'
+ use_frameworks!
   pod 'RealmSwift'
   
 

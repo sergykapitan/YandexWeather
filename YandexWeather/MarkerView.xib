@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MarkerView" customModule="YandexWeather" customModuleProvider="target">
             <connections>
-                <outlet property="pictureImageView" destination="O3u-72-wKB" id="9XE-wh-Edn"/>
+                <outlet property="pictureImageView" destination="d4y-qC-is6" id="0Uv-hI-KEq"/>
                 <outlet property="temperatureLabel" destination="ENJ-JX-JVW" id="efg-1r-b9q"/>
             </connections>
         </placeholder>
@@ -27,26 +27,26 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloudy2" translatesAutoresizingMaskIntoConstraints="NO" id="O3u-72-wKB">
-                    <rect key="frame" x="187" y="669.66666666666663" width="40" height="40"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fog" translatesAutoresizingMaskIntoConstraints="NO" id="d4y-qC-is6">
+                    <rect key="frame" x="187" y="673.66666666666663" width="40" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="o2O-y1-m8f"/>
-                        <constraint firstAttribute="width" constant="40" id="tbQ-SH-P9a"/>
+                        <constraint firstAttribute="width" constant="40" id="GGY-VN-f4T"/>
+                        <constraint firstAttribute="height" constant="40" id="OQg-Bd-AUb"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ENJ-JX-JVW" firstAttribute="top" secondItem="O3u-72-wKB" secondAttribute="bottom" constant="8" id="2Hp-p8-HNJ"/>
+                <constraint firstItem="ENJ-JX-JVW" firstAttribute="top" secondItem="d4y-qC-is6" secondAttribute="bottom" constant="4" id="6h5-ub-WXm"/>
                 <constraint firstAttribute="bottom" secondItem="ENJ-JX-JVW" secondAttribute="bottom" constant="4" id="BGK-1g-rpx"/>
                 <constraint firstItem="ENJ-JX-JVW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="4" id="Ch4-ke-DYV"/>
-                <constraint firstItem="O3u-72-wKB" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="ZHf-aQ-jH1"/>
+                <constraint firstItem="d4y-qC-is6" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="LaD-On-K1q"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ENJ-JX-JVW" secondAttribute="trailing" constant="4" id="xTO-mQ-XMO"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
     </objects>
     <resources>
-        <image name="cloudy2" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="fog" width="42.666667938232422" height="42.666667938232422"/>
     </resources>
 </document>

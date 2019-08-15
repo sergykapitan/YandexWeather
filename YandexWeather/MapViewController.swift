@@ -10,37 +10,55 @@ import UIKit
 import GoogleMaps
 import Alamofire
 import SwiftyJSON
+import RealmSwift
 
-class ViewController: UIViewController {
+class MapViewController: UIViewController {
     
-//MARK: - Property
+    //MARK: - Property
+    let realm = try! Realm() //Доступ к хранилищу
     private let locationManager = CLLocationManager()
     private let WEATHER_URL = "https://api.weather.yandex.ru/v1/forecast"
-   // private let APP_ID = "9a4dd815-d16d-46a5-bc87-0801a556b444"
-   // private let CITY_COUNT = "10"
+  
     private  let head:[String:String] = ["X-Yandex-API-Key": "9a4dd815-d16d-46a5-bc87-0801a556b444"]
     
-//MARK: - Outlets
+    //MARK: - Outlets
     @IBOutlet var mapView: GMSMapView!
     @IBOutlet var warningLabel: UILabel!
     
-//MARK: - Override methods
+    //MARK: - Action
+    
+    @IBAction func forecastButton(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "SegueTabView", sender: nil)
+    }
+    //MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SegueTabView" {
+            
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    
+    //MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+         title = "Карта"
          setupLocationManager()
-        
+         print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
 
 
 }
-//MARK: - Networking
-extension ViewController {
+    //MARK: - Networking
+extension MapViewController {
     private func getWeatherData(url: String, parameters: [String : String]) {
-        Alamofire.request(url, method: .get, parameters: parameters, headers: head).responseJSON { response in
+      //  let queue = DispatchQueue(label: "com.test.api", qos: .background, attributes: .concurrent)
+        let manager = Alamofire.SessionManager.default
+        manager.session.configuration.timeoutIntervalForRequest = 20
+        
+        manager.request(url, method: .get, parameters: parameters, headers: head).responseJSON { response in
             if response.result.isSuccess {
                 let weatherJSON: JSON = JSON(response.result.value!)
-               // print(weatherJSON)
                 
                 self.updateWeatherData(json: weatherJSON)
             } else {
@@ -51,36 +69,27 @@ extension ViewController {
         }
     }
 }
-//MARK: - UI Updates
-extension ViewController {
+    //MARK: - UI Updates
+extension MapViewController {
     
-    private func updateUI(with data: WeatherData) {
+    private func updateUI(with data: WeatherDataRealm ) {
         
         let markerView = MarkerView(frame: CGRect(x: 0, y: 0, width: 50, height: 70),
-                                   //  picture: data.fact.icon,
-                                    picture: data.getIcon(),
-                                   // temperature: String(data.fact.temp))
+                                    picture: data.condition, 
                                     temperature: String(data.temperature))
         
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(
-            
-                                              //  latitude: data.info.dolgota,
-                                              //  longitude: data.info.shirota
                                                  latitude: data.latitude,
-                                                 longitude: data.longtitude
-        )
+                                                 longitude: data.longtitude)
         marker.icon = markerView.asImage()
         marker.opacity = 0.7
-        marker.title = data.city//data.info.infoCity.name//
+        marker.title = data.city
         marker.map = mapView
         
         hideError()
     }
-    
-    
-    
-    
+
     private func showError(msg: String) {
         self.warningLabel.text = msg
         self.warningLabel.isHidden = false
@@ -100,29 +109,53 @@ extension ViewController {
 
 //MARK: - JSON Parsing
 
-extension ViewController {
+extension MapViewController {
     
     private func updateWeatherData(json: JSON) {
         let list = json
-        
+   
         guard list.count > 0 else {
             showError(msg: "Weather Unavailable")
             return }
         
-        let weatherData = WeatherData(temperature: list["fact"]["temp"].int!,
-                                      latitude: list["info"]["lat"].double!,
-                                      longtitude: list["info"]["lon"].double!,
-                                      city: list["info"]["tzinfo"]["name"].stringValue,
-                                      condition: list["fact"]["condtion"].intValue)
-        updateUI(with: weatherData)
+      //  print( list["forecasts"][0]["hours"].arrayValue.map({$0["hour"]}))
+     
+
+       let weatherDataRealm = WeatherDataRealm(value: [
+                            "My-Primary-Key",
+                            list["fact"]["temp"].int!,
+                            list["info"]["lat"].double!,
+                            list["info"]["lon"].double!,
+                            list["info"]["tzinfo"]["name"].stringValue,
+                            list["fact"]["condition"].stringValue,
+                            list["forecasts"][0]["date"].stringValue,
+                            list["forecasts"].arrayValue.map{$0["date"].stringValue},
+                            list["forecasts"].arrayValue.map{$0["parts"]["day"]["temp_avg"].intValue},
+                            list["forecasts"].arrayValue.map{$0["parts"]["day"]["condition"].stringValue}
+                                                                                                        ])
+        for i in 0..<7 {
+            let hours = Hours(value: list["forecasts"][i]["hours"].arrayValue.map({$0["temp"].intValue}))
+            var arr = [Int]()
+            for y in list["forecasts"][i]["hours"].arrayValue.map({$0["temp"].intValue}){
+                arr.append(y)
+            }
+            print(arr)
+            weatherDataRealm.hoursForDays.append(hours)
+        }
+        
+     
+        //запись в базу данных
+        try! self.realm.write {
+            self.realm.add(weatherDataRealm,update: .modified)
+        }
+        updateUI(with: weatherDataRealm)
         
     }
 }
 
-
 //MARK: - CLLocationManagerDelegate
 
-extension ViewController: CLLocationManagerDelegate {
+extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
@@ -149,9 +182,9 @@ extension ViewController: CLLocationManagerDelegate {
             "lat": String(latitude),
             "lon": String(longitude),
             "lang": "ru",
-            "limit": "7",
-            "hours": "false",
-            "extra": "true"
+            "limit": "1",
+            "hours": "true",
+            "extra": "false"
             ]
         
         

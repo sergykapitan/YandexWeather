@@ -7,22 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2613D20102DE80D76C1DF1CC /* libPods-YandexWeather.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D525D3A674A70532EFC543EE /* libPods-YandexWeather.a */; };
+		29B7B2D9AEE3A888D98B8F5D /* Pods_YandexWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D33C496C0955E3B5ADA9B4F /* Pods_YandexWeather.framework */; };
 		883227AA22FE0B4900576C5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883227A922FE0B4900576C5C /* AppDelegate.swift */; };
-		883227AC22FE0B4900576C5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883227AB22FE0B4900576C5C /* ViewController.swift */; };
+		883227AC22FE0B4900576C5C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883227AB22FE0B4900576C5C /* MapViewController.swift */; };
 		883227AF22FE0B4900576C5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 883227AD22FE0B4900576C5C /* Main.storyboard */; };
 		883227B422FE0B4D00576C5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 883227B322FE0B4D00576C5C /* Assets.xcassets */; };
 		883227B722FE0B4D00576C5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 883227B522FE0B4D00576C5C /* LaunchScreen.storyboard */; };
 		883227C222FE15BB00576C5C /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883227C122FE15BB00576C5C /* WeatherData.swift */; };
 		88CFDDB322FE22E5006BFD1B /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CFDDB222FE22E5006BFD1B /* MarkerView.swift */; };
 		88CFDDB522FE22FA006BFD1B /* MarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CFDDB422FE22FA006BFD1B /* MarkerView.xib */; };
+		88CFDDD52300543B006BFD1B /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CFDDD42300543B006BFD1B /* ForecastViewController.swift */; };
+		88CFDDE523017880006BFD1B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CFDDE423017880006BFD1B /* TableViewCell.swift */; };
+		88CFDDE7230178CA006BFD1B /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CFDDE6230178CA006BFD1B /* TableViewCell.xib */; };
+		88CFDDEC23021164006BFD1B /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CFDDEB23021164006BFD1B /* ImageCell.swift */; };
+		88CFDDF023022093006BFD1B /* HourseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CFDDEF23022093006BFD1B /* HourseCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0EB860C35424AEF5D58C73D5 /* Pods-YandexWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexWeather.debug.xcconfig"; path = "Target Support Files/Pods-YandexWeather/Pods-YandexWeather.debug.xcconfig"; sourceTree = "<group>"; };
+		4D33C496C0955E3B5ADA9B4F /* Pods_YandexWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YandexWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		883227A622FE0B4900576C5C /* YandexWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YandexWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		883227A922FE0B4900576C5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		883227AB22FE0B4900576C5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../ViewController.swift; sourceTree = "<group>"; };
+		883227AB22FE0B4900576C5C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ../MapViewController.swift; sourceTree = "<group>"; };
 		883227AE22FE0B4900576C5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		883227B322FE0B4D00576C5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		883227B622FE0B4D00576C5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -30,8 +36,12 @@
 		883227C122FE15BB00576C5C /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		88CFDDB222FE22E5006BFD1B /* MarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
 		88CFDDB422FE22FA006BFD1B /* MarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarkerView.xib; sourceTree = "<group>"; };
+		88CFDDD42300543B006BFD1B /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		88CFDDE423017880006BFD1B /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		88CFDDE6230178CA006BFD1B /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		88CFDDEB23021164006BFD1B /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		88CFDDEF23022093006BFD1B /* HourseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourseCollectionViewController.swift; sourceTree = "<group>"; };
 		A0315AE7B1D97BC63C347A3B /* Pods-YandexWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexWeather.release.xcconfig"; path = "Target Support Files/Pods-YandexWeather/Pods-YandexWeather.release.xcconfig"; sourceTree = "<group>"; };
-		D525D3A674A70532EFC543EE /* libPods-YandexWeather.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YandexWeather.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2613D20102DE80D76C1DF1CC /* libPods-YandexWeather.a in Frameworks */,
+				29B7B2D9AEE3A888D98B8F5D /* Pods_YandexWeather.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,7 +59,7 @@
 		703C683BEE0290AF994861F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D525D3A674A70532EFC543EE /* libPods-YandexWeather.a */,
+				4D33C496C0955E3B5ADA9B4F /* Pods_YandexWeather.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -99,6 +109,7 @@
 		883227BE22FE156100576C5C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				88CFDDE8230179BC006BFD1B /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -115,7 +126,9 @@
 		883227C022FE158B00576C5C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				883227AB22FE0B4900576C5C /* ViewController.swift */,
+				883227AB22FE0B4900576C5C /* MapViewController.swift */,
+				88CFDDD42300543B006BFD1B /* ForecastViewController.swift */,
+				88CFDDEF23022093006BFD1B /* HourseCollectionViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -137,6 +150,16 @@
 			name = MarkerView;
 			sourceTree = "<group>";
 		};
+		88CFDDE8230179BC006BFD1B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				88CFDDE423017880006BFD1B /* TableViewCell.swift */,
+				88CFDDE6230178CA006BFD1B /* TableViewCell.xib */,
+				88CFDDEB23021164006BFD1B /* ImageCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,6 +172,7 @@
 				883227A322FE0B4900576C5C /* Frameworks */,
 				883227A422FE0B4900576C5C /* Resources */,
 				1E77D8F8D091B59B4EADD381 /* [CP] Copy Pods Resources */,
+				90FA8D1DEB1FC5A77C5BE49D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -198,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88CFDDB522FE22FA006BFD1B /* MarkerView.xib in Resources */,
+				88CFDDE7230178CA006BFD1B /* TableViewCell.xib in Resources */,
 				883227B722FE0B4D00576C5C /* LaunchScreen.storyboard in Resources */,
 				883227B422FE0B4D00576C5C /* Assets.xcassets in Resources */,
 				883227AF22FE0B4900576C5C /* Main.storyboard in Resources */,
@@ -222,6 +247,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YandexWeather/Pods-YandexWeather-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90FA8D1DEB1FC5A77C5BE49D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YandexWeather/Pods-YandexWeather-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YandexWeather/Pods-YandexWeather-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YandexWeather/Pods-YandexWeather-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D63ED3FDC4A4721B82C01440 /* [CP] Check Pods Manifest.lock */ = {
@@ -253,9 +295,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88CFDDF023022093006BFD1B /* HourseCollectionViewController.swift in Sources */,
 				88CFDDB322FE22E5006BFD1B /* MarkerView.swift in Sources */,
-				883227AC22FE0B4900576C5C /* ViewController.swift in Sources */,
+				883227AC22FE0B4900576C5C /* MapViewController.swift in Sources */,
+				88CFDDD52300543B006BFD1B /* ForecastViewController.swift in Sources */,
+				88CFDDE523017880006BFD1B /* TableViewCell.swift in Sources */,
 				883227C222FE15BB00576C5C /* WeatherData.swift in Sources */,
+				88CFDDEC23021164006BFD1B /* ImageCell.swift in Sources */,
 				883227AA22FE0B4900576C5C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

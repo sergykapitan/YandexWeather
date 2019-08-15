@@ -1,4 +1,4 @@
-module Pods_YandexWeather {
+framework module Pods_YandexWeather {
   umbrella header "Pods-YandexWeather-umbrella.h"
 
   export *
