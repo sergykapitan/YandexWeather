@@ -8,6 +8,8 @@ target 'YandexWeather' do
   pod 'Alamofire'
  use_frameworks!
   pod 'RealmSwift'
+  pod 'SDWebImage'
+  pod 'SVGKit'
   
 
 end

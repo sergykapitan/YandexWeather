@@ -123,7 +123,7 @@ extension MapViewController {
         guard list.count > 0 else {
             showError(msg: "Weather Unavailable")
             return }
-       print(list["forecasts"].arrayValue.map{$0["parts"]["day"]["icon"].stringValue})
+        print(list["forecasts"][0]["hours"].arrayValue.map({$0["icon"].stringValue}))
        let weatherDataRealm = WeatherDataRealm(value: [
                             "My-Primary-Key",
                             list["fact"]["temp"].int!,
@@ -139,6 +139,9 @@ extension MapViewController {
                                                                                                         ])
         for i in 0..<7 {
             let hours = Hours()
+            for j in list["forecasts"][i]["hours"].arrayValue.map({$0["icon"].stringValue}) {
+                hours.icon.append(j)
+            }
             for y in list["forecasts"][i]["hours"].arrayValue.map({$0["temp"].intValue}) {
                 hours.temp.append(y)
             }

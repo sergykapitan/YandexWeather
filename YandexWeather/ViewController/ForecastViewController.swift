@@ -8,11 +8,13 @@
 
 import UIKit
 import RealmSwift
+import SVGKit
 
 class ForecastViewController: UIViewController {
     
     @IBOutlet var table: UITableView!
     
+    let baseURLImage = "https://yastatic.net/weather/i/icons/blueye/color/svg/"
    
     let realm = try! Realm()
     var items: Results<WeatherDataRealm>!
@@ -73,8 +75,11 @@ extension ForecastViewController: UITableViewDelegate,UITableViewDataSource {
         let date = item.forecast[indexPath.row]
         cell.dateLabel.text? = "Прогноз на:" + "\(date)"
         cell.temperatureLabel.text = "\(item.temperatureForDays[indexPath.row])° C"
-        let imageName = item.conditionsForDays[indexPath.row]
-        cell.weatherIconImage.image = UIImage(named: imageName)
+        let imageName = item.iconForDays[indexPath.row]
+        guard let url = URL(string: baseURLImage + imageName + ".svg") else {return cell}
+        let namSvgImgVar: SVGKImage = SVGKImage(contentsOf: url)
+        cell.weatherIconImage.image = namSvgImgVar.uiImage
+    
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
