@@ -1,0 +1,12 @@
+
+/* Class = "UIBarButtonItem"; title = "Прогноз"; ObjectID = "DBz-Qn-zRm"; */
+"DBz-Qn-zRm.title" = "Прогноз";
+
+/* Class = "UILabel"; text = "Time: 20"; ObjectID = "PAR-tC-35y"; */
+"PAR-tC-35y.text" = "Time: 20";
+
+/* Class = "UILabel"; text = "Warning Label"; ObjectID = "Qau-HO-dCB"; */
+"Qau-HO-dCB.text" = "Warning Label";
+
+/* Class = "UILabel"; text = "Temp:22° С"; ObjectID = "dis-x7-LXZ"; */
+"dis-x7-LXZ.text" = "Temp:22° С";
