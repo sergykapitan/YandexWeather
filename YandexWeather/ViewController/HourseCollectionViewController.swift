@@ -24,7 +24,6 @@ class HourseCollectionViewController: UICollectionViewController,UICollectionVie
         super.viewDidLoad()
         title = "Прогноз по Часам"
         self.items = self.realm.objects(WeatherDataRealm.self)
- 
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -37,6 +36,8 @@ class HourseCollectionViewController: UICollectionViewController,UICollectionVie
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+      //  let myViewModel = items.last
+       // print(myViewModel?.hoursForDays[index])
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         as! ImageCell
         guard let hour = items.last else {return cell}

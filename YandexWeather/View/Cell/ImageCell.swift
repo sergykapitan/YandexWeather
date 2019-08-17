@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
+
+
 class ImageCell: UICollectionViewCell {
-    
-    
- 
+
     @IBOutlet var timeLabel: UILabel!
-    
     @IBOutlet var imageIcon: UIImageView!
     @IBOutlet var temperatureForHoursLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
