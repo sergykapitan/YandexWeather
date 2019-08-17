@@ -1,5 +1,5 @@
 //
-//  CellViewModel.swift
+//  HoursViewModel.swift
 //  YandexWeather
 //
 //  Created by Sergey Koriukin on 17/08/2019.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct CellViewModel {
+struct HoursViewModel {
     
-    var date: String
+    var hour: String
     var temp: Int
     var icon: String
 }

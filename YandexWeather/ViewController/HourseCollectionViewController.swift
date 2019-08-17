@@ -8,9 +8,7 @@
 
 import UIKit
 import RealmSwift
-import SVGKit
 
-private let reuseIdentifier = "Cell"
 
 class HourseCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -19,7 +17,7 @@ class HourseCollectionViewController: UICollectionViewController,UICollectionVie
     let realm = try! Realm()
     var index = 0
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Прогноз по Часам"
@@ -27,40 +25,22 @@ class HourseCollectionViewController: UICollectionViewController,UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100.0, height: 100.0)
+        return ImageCell.cellHeight
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let temp = items.last
-        return temp?.hoursForDays[index].temp.count ?? 24
+        guard let temp = items.last else {return 24}
+        return temp.hoursForDays[index].temp.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-      //  let myViewModel = items.last
-       // print(myViewModel?.hoursForDays[index])
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseID, for: indexPath)
         as! ImageCell
         guard let hour = items.last else {return cell}
         let tem = hour.hoursForDays[index]
-        guard let intHours = UInt(tem.hour[indexPath.row]) else {return cell}
-        cell.timeLabel.text = hoursCountUniversal(count: intHours)
-        //formatHors(hour: "\(tem.hour[indexPath.row])")
-        cell.temperatureForHoursLabel.text = "Темп:\(tem.temp[indexPath.row])° C"
-        let imageName = tem.icon[indexPath.row]  
-        guard let url = URL(string: baseURLImage + imageName + ".svg") else {return cell}
-        let namSvgImgVar: SVGKImage = SVGKImage(contentsOf: url)
-        cell.imageIcon.image = namSvgImgVar.uiImage
-    
+        let myHoursViewModel = HoursViewModel(hour: tem.hour[indexPath.row], temp: tem.temp[indexPath.row], icon: tem.icon[indexPath.row])
+        cell.setup(with: myHoursViewModel)
         return cell
     }
+}
 
-    
-}
-extension HourseCollectionViewController {
-    // change ending [час часа часов]
-    private func hoursCountUniversal(count: UInt) -> String{
-        let formatHours: String = NSLocalizedString("HoursCount", comment: "found in Localized.stringsdict")
-        let resultString : String = String.localizedStringWithFormat(formatHours, count)
-        return resultString
-    }
-}

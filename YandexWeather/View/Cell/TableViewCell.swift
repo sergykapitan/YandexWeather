@@ -28,17 +28,6 @@ class TableViewCell: UITableViewCell {
         cellWraperView.layer.cornerRadius = 5
     }
     
-    func formatDate(dateStr: String) -> String {
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd"
-        let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "dd MMMM"
-        dateFormatterPrint.locale = Locale(identifier: "ru_RU")
-        
-        let date: NSDate? = dateFormatterGet.date(from: dateStr) as NSDate?
-        return dateFormatterPrint.string(from: date! as Date)
-    }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         if selected {
@@ -64,5 +53,18 @@ class TableViewCell: UITableViewCell {
         temperatureLabel.text = "\(viewModel.temp)° C"
         weatherIconImage.image = image?.uiImage
         
+    }
+}
+extension TableViewCell {
+    
+    func formatDate(dateStr: String) -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "dd MMMM"
+        dateFormatterPrint.locale = Locale(identifier: "ru_RU")
+        
+        let date: NSDate? = dateFormatterGet.date(from: dateStr) as NSDate?
+        return dateFormatterPrint.string(from: date! as Date)
     }
 }

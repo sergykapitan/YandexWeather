@@ -60,7 +60,7 @@ class ForecastViewController: UIViewController {
 extension ForecastViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let aState = items.last else {return items.count}
+        guard let aState = items.last else {return 7}
         return aState.forecast.count
     }
     

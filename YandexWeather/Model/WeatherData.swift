@@ -12,6 +12,7 @@ import SwiftyJSON
 
 
 class WeatherDataRealm: Object {
+    
     @objc dynamic var ID = UUID().uuidString
     @objc dynamic var temperature: Int = 0
     @objc dynamic var latitude: Double = 0
