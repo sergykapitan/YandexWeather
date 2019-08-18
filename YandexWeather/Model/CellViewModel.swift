@@ -9,7 +9,6 @@
 import Foundation
 
 struct CellViewModel {
-    
     var date: String
     var temp: Int
     var icon: String

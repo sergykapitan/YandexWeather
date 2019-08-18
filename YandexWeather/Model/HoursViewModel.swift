@@ -9,7 +9,6 @@
 import Foundation
 
 struct HoursViewModel {
-    
     var hour: String
     var temp: Int
     var icon: String

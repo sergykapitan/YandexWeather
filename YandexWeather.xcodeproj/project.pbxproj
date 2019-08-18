@@ -17,6 +17,9 @@
 		888B4681230830E500E5DC94 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 888B4680230830E500E5DC94 /* Localizable.stringsdict */; };
 		888B4683230858F900E5DC94 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B4682230858F900E5DC94 /* CellViewModel.swift */; };
 		888B468523087B2E00E5DC94 /* HoursViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B468423087B2E00E5DC94 /* HoursViewModel.swift */; };
+		888B46882308856400E5DC94 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B46872308856400E5DC94 /* MapPresenter.swift */; };
+		888B468A2308858400E5DC94 /* WeatherNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B46892308858400E5DC94 /* WeatherNetworkService.swift */; };
+		888B468C230885A000E5DC94 /* WeatherDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B468B230885A000E5DC94 /* WeatherDataService.swift */; };
 		889F61852305F78E008D7B48 /* DisignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889F61842305F78E008D7B48 /* DisignableView.swift */; };
 		88CFDDB322FE22E5006BFD1B /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CFDDB222FE22E5006BFD1B /* MarkerView.swift */; };
 		88CFDDB522FE22FA006BFD1B /* MarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CFDDB422FE22FA006BFD1B /* MarkerView.xib */; };
@@ -43,6 +46,9 @@
 		888B4680230830E500E5DC94 /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		888B4682230858F900E5DC94 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		888B468423087B2E00E5DC94 /* HoursViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursViewModel.swift; sourceTree = "<group>"; };
+		888B46872308856400E5DC94 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
+		888B46892308858400E5DC94 /* WeatherNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkService.swift; sourceTree = "<group>"; };
+		888B468B230885A000E5DC94 /* WeatherDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataService.swift; sourceTree = "<group>"; };
 		889F61842305F78E008D7B48 /* DisignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisignableView.swift; sourceTree = "<group>"; };
 		88CFDDB222FE22E5006BFD1B /* MarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
 		88CFDDB422FE22FA006BFD1B /* MarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarkerView.xib; sourceTree = "<group>"; };
@@ -104,6 +110,7 @@
 		883227A822FE0B4900576C5C /* YandexWeather */ = {
 			isa = PBXGroup;
 			children = (
+				888B46862308850700E5DC94 /* Helpers */,
 				883227BF22FE157800576C5C /* App */,
 				883227C322FE15C300576C5C /* Model */,
 				883227C022FE158B00576C5C /* ViewController */,
@@ -151,6 +158,40 @@
 				888B468423087B2E00E5DC94 /* HoursViewModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		888B46862308850700E5DC94 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				888B4691230899F500E5DC94 /* Presenter */,
+				888B468D230896E200E5DC94 /* Networking */,
+				888B468E2308970300E5DC94 /* RealmDataAcess */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		888B468D230896E200E5DC94 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				888B46892308858400E5DC94 /* WeatherNetworkService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		888B468E2308970300E5DC94 /* RealmDataAcess */ = {
+			isa = PBXGroup;
+			children = (
+				888B468B230885A000E5DC94 /* WeatherDataService.swift */,
+			);
+			path = RealmDataAcess;
+			sourceTree = "<group>";
+		};
+		888B4691230899F500E5DC94 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				888B46872308856400E5DC94 /* MapPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		88CFDDB122FE22A8006BFD1B /* MarkerView */ = {
@@ -333,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				888B468C230885A000E5DC94 /* WeatherDataService.swift in Sources */,
 				888B468523087B2E00E5DC94 /* HoursViewModel.swift in Sources */,
 				888B4683230858F900E5DC94 /* CellViewModel.swift in Sources */,
 				88CFDDF023022093006BFD1B /* HourseCollectionViewController.swift in Sources */,
@@ -340,10 +382,12 @@
 				883227AC22FE0B4900576C5C /* MapViewController.swift in Sources */,
 				88CFDDD52300543B006BFD1B /* ForecastViewController.swift in Sources */,
 				88CFDDE523017880006BFD1B /* TableViewCell.swift in Sources */,
+				888B468A2308858400E5DC94 /* WeatherNetworkService.swift in Sources */,
 				889F61852305F78E008D7B48 /* DisignableView.swift in Sources */,
 				883227C222FE15BB00576C5C /* WeatherData.swift in Sources */,
 				88CFDDEC23021164006BFD1B /* ImageCell.swift in Sources */,
 				883227AA22FE0B4900576C5C /* AppDelegate.swift in Sources */,
+				888B46882308856400E5DC94 /* MapPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
